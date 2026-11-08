@@ -1,0 +1,107 @@
+BUILD TEST
+
+Test 1: Compilation
+Input: g++ -std=c++17 -Wall -Wextra -Iinclude src/*.cpp -o campus
+Expected: Program compiles successfully.
+Actual: Program compiled successfully without errors.
+Result: PASS
+
+FILE LOADING TESTS
+
+Test 2: Load Provided Data
+Input: ./campus
+Expected: 7 buildings, 6 connections, 10 facilities, and 7 departments accepted.
+Actual: All four files loaded with the expected counts and 0 rejected records.
+Result: PASS
+
+Test 3: Hash Table Diagnostics
+Input: Load facilities.txt
+Expected: 10 entries and correct collision statistics.
+Actual: Capacity 11, entries 10, collisions 1.
+Result: PASS
+
+FACILITY DATABASE TESTS
+
+Test 4: Display Facilities
+Input: Menu option 1
+Expected: Display all 10 facilities.
+Actual: All 10 facilities displayed.
+Result: PASS
+
+Test 5: Lowercase Facility ID
+Input: Menu option 2, f004
+Expected: Find F004, Computer Lab A.
+Actual: F004 found in Science Building, category Computer Lab.
+Result: PASS
+
+Test 6: Invalid Facility ID
+Input: Menu option 2, 004
+Expected: Reject invalid ID format.
+Actual: Program displayed the invalid ID format message.
+Result: PASS
+
+Test 7: Facility Not Found
+Input: Menu option 2, F999
+Expected: Report facility not found.
+Actual: Program displayed "Facility F999 not found."
+Result: PASS
+
+CAMPUS GRAPH TESTS
+
+Test 8: Display Campus Graph
+Input: Menu option 3
+Expected: Display all 7 buildings and their connections.
+Actual: All buildings and connections displayed correctly. Observatory had no connections.
+Result: PASS
+
+Test 9: Graph Counts and Degrees
+Input: Menu option 4
+Expected: 7 buildings, 6 connections, and correct degrees.
+Actual: All counts and degrees matched the sample data.
+Result: PASS
+
+BFS TESTS
+
+Test 10: BFS From Library
+Input: Menu option 5, Library
+Expected: Reach 6 of 7 buildings in BFS order with correct distances.
+Actual: Reached 6 of 7 buildings in the expected order and distances.
+Result: PASS
+
+Test 11: BFS From Isolated Building
+Input: Menu option 5, Observatory
+Expected: Observatory at distance 0; reachable count 1 of 7.
+Actual: Observatory displayed at distance 0; reachable count 1 of 7.
+Result: PASS
+
+Test 12: BFS With Unknown Building
+Input: Menu option 5, Fake Building
+Expected: Display an unknown building error.
+Actual: Program displayed "Error: Unknown building: Fake Building".
+Result: PASS
+
+DEPARTMENT TREE TESTS
+
+Test 13: Add Department
+Input: Menu option 6, Cybersecurity, College of Engineering
+Expected: Add Cybersecurity under College of Engineering.
+Actual: Department added successfully.
+Result: PASS
+
+Test 14: Search Department
+Input: Menu option 7, Cybersecurity
+Expected: Parent College of Engineering, 0 children, depth 2.
+Actual: All department information matched.
+Result: PASS
+
+Test 15: Department Hierarchy
+Input: Menu option 8
+Expected: Display departments with four spaces per depth.
+Actual: Department hierarchy displayed with correct relationships and indentation.
+Result: PASS
+
+Test 16: Preorder Traversal
+Input: Menu option 9
+Expected: Display departments in preorder without indentation.
+Actual: All 8 departments displayed in the expected preorder sequence.
+Result: PASS
