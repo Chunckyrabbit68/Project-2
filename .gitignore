@@ -1,0 +1,27 @@
+# Compiled executables
+campus
+*.exe
+*.out
+
+# Object files
+*.o
+*.obj
+
+# Build directories
+build/
+bin/
+Debug/
+Release/
+
+# VS Code settings
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.log
+*~
+
+# Operating system files
+.DS_Store
+Thumbs.db
