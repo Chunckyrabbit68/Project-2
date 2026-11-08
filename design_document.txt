@@ -1,0 +1,125 @@
+1. PROJECT OVERVIEW
+
+The Smart Campus Navigation and Facility Analytics System is a C++ program designed to manage campus facilities, building connections, and academic departments.
+
+The program uses three main data structures: a custom hash table, an undirected graph, and a general tree. Each structure is implemented in separate classes to keep the program organized and easier to maintain.
+
+2. CUSTOM HASH TABLE
+
+The HashTable class stores campus facilities using their facility IDs as keys. Each facility contains an ID, name, building, and category.
+
+The hash table has an initial capacity of 11 buckets and uses a custom polynomial hash function.
+
+The hash function processes each character of the facility ID using the following formula:
+
+hash = (hash * 31 + character ASCII value) % table capacity
+
+The hash value begins at 0. Each character contributes to the final index.
+
+Facility IDs are converted to uppercase before hashing so that IDs such as F004 and f004 are treated as the same key.
+
+The program does not use built-in hash tables or the standard library hash function.
+
+3. COLLISION HANDLING
+
+The hash table uses separate chaining to handle collisions.
+
+Each bucket contains a vector that can store multiple facilities. If two facility IDs produce the same hash index, both facilities can be stored in that bucket.
+
+Separate chaining was chosen because it is straightforward to implement and does not impose a fixed maximum number of facilities.
+
+A collision is counted when a new, accepted facility is inserted into a bucket that already contains another facility.
+
+Duplicate facility IDs are rejected and do not increase the collision count.
+
+The program tracks the hash table's capacity, total entries, and collision count.
+
+The initial capacity is 11. The table does not resize, but each bucket can grow as additional facilities are inserted.
+
+4. FACILITY DATABASE
+
+The Facility class stores the ID, name, building, and category of each campus facility.
+
+The FacilityDatabase class handles reading facility records, validating IDs, rejecting duplicates, displaying facilities, and searching by ID.
+
+Facilities are stored in a vector to preserve their original file order.
+
+Facility IDs must begin with F followed by exactly three digits.
+
+The program rejects invalid records and facilities referencing buildings that do not exist in the campus graph.
+
+Facility ID searches use the custom hash table instead of scanning all facility records.
+
+5. CAMPUS GRAPH
+
+The CampusGraph class represents campus buildings and their connections using an undirected, unweighted graph.
+
+An adjacency list was selected because it stores only existing connections and can grow dynamically as buildings are loaded.
+
+Each building is stored as a vertex, and each walkway is represented as an edge connecting two buildings.
+
+Connections are stored in both directions but counted only once.
+
+The program rejects duplicate connections, self-connections, and connections referencing unknown buildings.
+
+Building names and neighboring buildings are displayed in their original insertion order.
+
+The graph also calculates the number of buildings, total connections, and degree of each building.
+
+6. BREADTH-FIRST SEARCH
+
+Breadth-First Search (BFS) is used to determine which buildings are reachable from a selected starting building.
+
+The algorithm uses a queue and a visited structure.
+
+The starting building is marked as visited and assigned a distance of 0.
+
+As neighboring buildings are discovered, they are marked as visited, assigned a distance, and added to the queue.
+
+BFS processes buildings in the order they are discovered and calculates the number of connections needed to reach each building.
+
+The program also handles isolated buildings and unknown starting locations.
+
+7. DEPARTMENT GENERAL TREE
+
+The DepartmentTree class represents the university's academic department hierarchy.
+
+Each DepartmentNode contains a department name, a pointer to its parent, and a vector of pointers to its children.
+
+A general tree was chosen because departments can have any number of child departments.
+
+The first accepted department becomes the root. Additional departments are attached to existing parent departments.
+
+The program supports adding departments, searching by name, displaying the hierarchy, and preorder traversal.
+
+Preorder traversal visits the current department before recursively visiting its children in insertion order.
+
+The department tree also uses a destructor to release dynamically allocated nodes.
+
+8. PROGRAM ORGANIZATION
+
+The project uses separate header and implementation files for its main classes.
+
+Facility stores individual facility information.
+
+FacilityDatabase manages facility records and validation.
+
+HashTable handles facility ID lookup and collision management.
+
+CampusGraph handles buildings, connections, statistics, and BFS.
+
+DepartmentNode represents individual departments.
+
+DepartmentTree manages the department hierarchy and traversal operations.
+
+The main.cpp file initializes the data structures, coordinates file loading, and provides the user menu.
+
+This modular design allows each part of the project to be developed, tested, and maintained separately.
+
+9. CONCLUSION
+
+The Milestone 1 system combines a custom hash table, campus graph, BFS, and general tree to organize campus information.
+
+The hash table provides facility ID lookup, the graph represents building connections, BFS determines reachability, and the general tree organizes academic departments.
+
+The program uses dynamically sized containers and reads campus information from external text files instead of relying on hard-coded records.
