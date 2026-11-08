@@ -1,0 +1,87 @@
+TEAM MEMBERS
+
+Gabriel Lawrence
+Nathan Ndukwe
+Colin Dwyer
+
+
+GABRIEL LAWRENCE
+
+Modules:
+
+Facility
+
+FacilityDatabase
+
+HashTable
+
+Main Menu Integration
+
+Contributions:
+
+Implemented facility record storage and validation.
+
+Developed the custom hash table using separate chaining.
+
+Implemented facility ID searches and duplicate detection.
+
+Integrated the project modules into the main program.
+
+Compiled and tested the program using GitHub Codespaces.
+
+Worked on project documentation.
+
+
+
+NATHAN NDUKWE
+
+Modules:
+
+DepartmentNode
+
+DepartmentTree
+
+Contributions:
+
+Worked on the department tree structure.
+
+Created the department node and tree header files.
+
+Developed the initial department tree implementation.
+
+Contributed to the department hierarchy design.
+
+
+
+COLIN DWYER
+
+Modules:
+
+CampusGraph
+
+BFS Reachability
+
+Assigned Responsibilities:
+
+Campus building and connection management.
+
+Undirected graph implementation using an adjacency list.
+
+Building and connection file loading.
+
+Graph statistics and building degrees.
+
+BFS reachability and distance calculations.
+
+Graph validation and testing.
+
+SHARED WORK
+
+GitHub repository organization and collaboration.
+
+Integration and review of project modules.
+
+Testing and debugging.
+
+Preparation of Milestone 1 deliverables.
+
