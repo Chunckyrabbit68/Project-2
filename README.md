@@ -1,4 +1,4 @@
-# Project-2PROJECT OVERVIEW
+# Project-2 PROJECT OVERVIEW
 
 The Smart Campus Navigation and Facility Analytics System is a C++ program that manages campus facilities, building connections, and academic departments.
 
