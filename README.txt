@@ -94,6 +94,8 @@ To run the program with a different data directory:
 
 ./campus testdata/case1
 
+testdata/case1 also contains graph edge cases.
+
 The directory must contain input files using the required formats.
 
 INPUT FILES
@@ -146,6 +148,10 @@ Display department hierarchy
 
 Run preorder traversal
 
+Find shortest path (BFS)
+
+Graph connectivity report
+
 Exit
 
 Users can select an option by entering its corresponding number.
@@ -172,7 +178,7 @@ The campus graph uses an adjacency list.
 
 Each building represents a vertex, and each connection represents an undirected edge.
 
-The graph supports displaying connections, calculating building degrees, and finding reachable buildings.
+The graph supports displaying connections, calculating building degrees, finding reachable buildings, finding the shortest path between two buildings, connectivity report.
 
 BFS uses a queue to visit buildings and calculate their distances from a starting location.
 
