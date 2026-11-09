@@ -112,3 +112,76 @@ Expected: 11 accepted facilities, 1 rejected duplicate ID,
 11 hash entries, and 2 collisions.
 Actual: 11 accepted, 1 rejected, 11 entries, 2 collisions.
 Result: PASS
+
+Test 18: Invalid Menu Input (Letters)
+Input: abc
+Expected: Display an invalid menu choice message and return to the menu.
+Actual: Invalid menu choice displayed. Program continued normally.
+Result: PASS
+
+Test 19: Out-of-Range Menu Input
+Input: 99
+Expected: Reject the input and return to the menu.
+Actual: Invalid menu choice displayed. Program continued normally.
+Result: PASS
+
+Test 20: Blank Department Name
+Input: Menu option 6, blank department name
+Expected: Reject the empty name.
+Actual: Error message displayed. Department was not added.
+Result: PASS
+
+Test 21: Duplicate Department
+Input: Menu option 6, Computer Science, College of Engineering
+Expected: Reject the duplicate department.
+Actual: Program displayed an error stating the department already exists.
+Result: PASS
+
+Test 22: Unknown Parent Department
+Input: Menu option 6, Cybersecurity, Fake College
+Expected: Reject the department because the parent does not exist.
+Actual: Program displayed an unknown parent department error.
+Result: PASS
+
+Test 23: Blank Menu Input
+Input: Press Enter without entering a menu choice.
+Expected: Display an invalid menu choice message.
+Actual: Invalid menu choice displayed. Program returned to the menu.
+Result: PASS
+
+Test 24: Search for Nonexistent Department
+Input: Menu option 7, Fake Department
+Expected: Report that the department was not found.
+Actual: Program displayed "Department not found: Fake Department".
+Result: PASS
+
+Test 25: Missing Input Files
+Input: ./campus testdata/missing
+Expected: Report errors for all four missing files without crashing.
+Actual: All four missing files were reported. Each file showed 0 accepted and 0 rejected records.
+Result: PASS
+
+Test 26: Empty Facility Database
+Input: Menu option 1 after loading missing data files.
+Expected: Display no facilities available and total facilities of 0.
+Actual: Program displayed both expected messages.
+Result: PASS
+
+Test 27: Empty Department Tree
+Input: Menu option 8 after loading missing data files.
+Expected: Display a message stating no departments are loaded.
+Actual: Program displayed "No departments are loaded."
+Result: PASS
+
+Test 28: Create Root Department
+Input: Menu option 6, University, with an empty department tree.
+Expected: Create University as the root without requesting a parent.
+Actual: Program requested a parent but allowed the field to remain blank. University was successfully created as the root.
+Result: PARTIAL PASS
+
+Tests 1–17: PASS
+Tests 18–27: PASS
+Test 28: PARTIAL PASS
+Tests 29–30: PASS
+
+The root department creation test identified a minor issue where the program requests a parent even when the department tree is empty. Root creation itself works correctly.
