@@ -330,3 +330,174 @@ void CampusGraph::bfs(const string& startBuilding) const {
 const vector<string>& CampusGraph::getBuildings() const {
     return buildings;
 }
+
+// Find shortest path between two buildings BFS
+void CampusGraph::shortestPath(
+    const string& startBuilding,
+    const string& endBuilding
+) const {
+    int start = findBuilding(startBuilding);
+    int destination = findBuilding(endBuilding);
+
+    // Identify every unknown building
+    if (start == -1) {
+        cout << "Error: Unknown building: "
+             << trim(startBuilding) << "\n";
+    }
+
+    if (destination == -1) {
+        cout << "Error: Unknown building: "
+             << trim(endBuilding) << "\n";
+    }
+
+    if (start == -1 || destination == -1) {
+        return;
+    }
+
+    vector<bool> visited(buildings.size(), false);
+
+    // Stores building each was reached from
+    vector<int> previous(buildings.size(), -1);
+    queue<int> q;
+
+    // starting building visited when enqueued
+    visited[start] = true;
+    q.push(start);
+
+    while (!q.empty()) {
+        int current = q.front();
+        q.pop();
+
+        // Visit neighboring buildings
+        for (int neighbor : adjacencyList[current]) {
+            if (!visited[neighbor]) {
+                visited[neighbor] = true;
+                previous[neighbor] = current;
+                q.push(neighbor);
+            }
+        }
+    }
+
+    if (!visited[destination]) {
+        cout << "No path exists between "
+             << buildings[start] << " and "
+             << buildings[destination] << "\n";
+        return;
+    }
+
+    // Rebuild the path from destination to start
+    vector<int> path;
+    int building = destination;
+
+    while (building != -1) {
+        path.push_back(building);
+        building = previous[building];
+    }
+
+    cout << "\nShortest path:\n";
+
+    // Print the path begins at the start building
+    for (int i = static_cast<int>(path.size()) - 1; i >= 0; i--) {
+        cout << buildings[path[i]] << "\n";
+    }
+
+    cout << "Number of connections: "
+         << path.size() - 1 << "\n";
+}
+
+// display totals, highest degree, isolated buildings, and components
+void CampusGraph::displayConnectivityReport() const {
+    if (buildings.empty()) {
+        cout << "No buildings are loaded.\n";
+        cout << "Total buildings: 0\n";
+        cout << "Total connections: 0\n";
+        cout << "Connected components: 0\n";
+        return;
+    }
+
+    cout << "\nTotal buildings: "
+         << buildings.size() << "\n";
+
+    cout << "Total connections: "
+         << connectionCount << "\n";
+
+    // Finds highest degree list every building tied 
+    size_t highestDegree = 0;
+
+    for (size_t i = 0; i < buildings.size(); i++) {
+        if (adjacencyList[i].size() > highestDegree) {
+            highestDegree = adjacencyList[i].size();
+        }
+    }
+
+    cout << "Highest degree (" << highestDegree << "): ";
+
+    bool first = true;
+
+    for (size_t i = 0; i < buildings.size(); i++) {
+        if (adjacencyList[i].size() == highestDegree) {
+            if (!first) {
+                cout << ", ";
+            }
+
+            cout << buildings[i];
+            first = false;
+        }
+    }
+
+    cout << "\n";
+
+    // Isolated buildings no connections
+    cout << "Isolated buildings: ";
+
+    bool foundIsolated = false;
+
+    for (size_t i = 0; i < buildings.size(); i++) {
+        if (adjacencyList[i].empty()) {
+            if (foundIsolated) {
+                cout << ", ";
+            }
+
+            cout << buildings[i];
+            foundIsolated = true;
+        }
+    }
+
+    if (!foundIsolated) {
+        cout << "None";
+    }
+
+    cout << "\n";
+
+    // BFS from an unvisited building finds one new component
+    vector<bool> visited(buildings.size(), false);
+    int componentCount = 0;
+
+    for (size_t i = 0; i < buildings.size(); i++) {
+        if (visited[i]) {
+            continue;
+        }
+
+        componentCount++;
+
+        queue<int> q;
+
+        visited[i] = true;
+        q.push(static_cast<int>(i));
+
+        while (!q.empty()) {
+            int current = q.front();
+            q.pop();
+
+            for (int neighbor : adjacencyList[current]) {
+                if (!visited[neighbor]) {
+                    visited[neighbor] = true;
+                    q.push(neighbor);
+                }
+            }
+        }
+    }
+
+    cout << "Connected components: "
+         << componentCount << "\n";
+}
