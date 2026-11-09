@@ -105,3 +105,10 @@ Input: Menu option 9
 Expected: Display departments in preorder without indentation.
 Actual: All 8 departments displayed in the expected preorder sequence.
 Result: PASS
+
+Test 17: Hash Collision and Duplicate ID Test
+Input: ./campus testdata/case1
+Expected: 11 accepted facilities, 1 rejected duplicate ID,
+11 hash entries, and 2 collisions.
+Actual: 11 accepted, 1 rejected, 11 entries, 2 collisions.
+Result: PASS
