@@ -4,7 +4,6 @@ Gabriel Lawrence
 Nathan Ndukwe
 Colin Dwyer
 
-
 GABRIEL LAWRENCE
 
 Modules:
@@ -14,6 +13,10 @@ Facility
 FacilityDatabase
 
 HashTable
+
+CampusGraph
+
+BFS Reachability
 
 Main Menu Integration
 
@@ -25,12 +28,19 @@ Developed the custom hash table using separate chaining.
 
 Implemented facility ID searches and duplicate detection.
 
-Integrated the project modules into the main program.
+Developed the campus graph using an adjacency list.
 
-Compiled and tested the program using GitHub Codespaces.
+Implemented building and connection file loading.
 
-Worked on project documentation.
+Implemented graph statistics and BFS reachability.
 
+Integrated the facility, graph, and department modules into the main program.
+
+Completed and integrated the department tree implementation using Nathan's initial work.
+
+Compiled and tested the program using GitHub Codespaces and UNT CELL.
+
+Prepared the project documentation.
 
 
 NATHAN NDUKWE
@@ -43,11 +53,11 @@ DepartmentTree
 
 Contributions:
 
-Worked on the department tree structure.
+Created the DepartmentNode and DepartmentTree header files.
 
-Created the department node and tree header files.
+Developed the initial department tree structure.
 
-Developed the initial department tree implementation.
+Defined functions for adding departments, searching, displaying the hierarchy, and preorder traversal.
 
 Contributed to the department hierarchy design.
 
@@ -55,33 +65,16 @@ Contributed to the department hierarchy design.
 
 COLIN DWYER
 
-Modules:
+Modules: Did not contribute
 
-CampusGraph
-
-BFS Reachability
-
-Assigned Responsibilities:
-
-Campus building and connection management.
-
-Undirected graph implementation using an adjacency list.
-
-Building and connection file loading.
-
-Graph statistics and building degrees.
-
-BFS reachability and distance calculations.
-
-Graph validation and testing.
+Contributions: Did not contribute
 
 SHARED WORK
 
-GitHub repository organization and collaboration.
+GitHub repository organization.
 
-Integration and review of project modules.
+Integration of project modules.
 
 Testing and debugging.
 
 Preparation of Milestone 1 deliverables.
-
