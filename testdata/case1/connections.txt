@@ -4,3 +4,12 @@ Student Union|Science Building
 Student Union|Gym
 Science Building|Engineering Building
 Business Building|Gym
+  Business Building  |  Hall #2  
+Art Building|Music Hall
+Student Union|Library
+LIBRARY|student union
+Gym|Gym
+Library|Parking Garage
+Library
+Library|Gym|Observatory
+|Gym
