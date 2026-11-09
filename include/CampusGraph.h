@@ -51,6 +51,14 @@ public:
     // Finds reachable buildings using BFS
     void bfs(const std::string& startBuilding) const;
 
+    // finds the shortest path between buildings BFS
+    void shortestPath(
+        const std::string& startBuilding,
+        const std::string& endBuilding
+    ) const;
+
+    void displayConnectivityReport() const;
+
     // Provides accepted building names for facility validation
     const std::vector<std::string>& getBuildings() const;
 };
