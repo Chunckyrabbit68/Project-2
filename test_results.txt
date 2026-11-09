@@ -179,9 +179,83 @@ Expected: Create University as the root without requesting a parent.
 Actual: Program requested a parent but allowed the field to remain blank. University was successfully created as the root.
 Result: PARTIAL PASS
 
+SHORTEST PATH AND CONNECTIVITY TESTS
+
+Test 29: Shortest Path From Library
+Input: Menu option 10, Library, Engineering Building
+Expected: Library, Student Union, Science Building, Engineering Building; 3 connections.
+Actual: Displayed the expected path and 3 connections.
+Result: PASS
+
+Test 30: Shortest Path to Same Building
+Input: Menu option 10, Library, library
+Expected: Library and 0 connections.
+Actual: Displayed Library and 0 connections.
+Result: PASS
+
+Test 31: Shortest Path With Unknown Start
+Input: Menu option 10, Fake Building, Gym
+Expected: Display an unknown building error.
+Actual: Program displayed "Error: Unknown building: Fake Building".
+Result: PASS
+
+Test 32: Shortest Path With Unknown Destination
+Input: Menu option 10, Gym, Fake Building
+Expected: Display an unknown building error.
+Actual: Program displayed "Error: Unknown building: Fake Building".
+Result: PASS
+
+Test 33: Shortest Path With No Route
+Input: Menu option 10, Library, Observatory
+Expected: Report that no path exists.
+Actual: Program displayed "No path exists between Library and Observatory".
+Result: PASS
+
+Test 34: Shortest Path Tie
+Input: Menu option 10, Library, Gym
+Expected: Library, Student Union, Gym; 2 connections.
+Actual: Displayed the expected path and 2 connections.
+Result: PASS
+
+Test 35: Shortest Path Tie With Own Test Data
+Input: ./campus testdata/case1, menu option 10, Hall #2, Student Union
+Expected: Hall #2, Business Building, Library, Student Union; 3 connections.
+Actual: Displayed the expected path and 3 connections.
+Result: PASS
+
+Test 36: Connectivity Report
+Input: Menu option 11
+Expected: 7 buildings, 6 connections, Student Union highest degree, Observatory isolated, 2 components.
+Actual: All values matched the sample data.
+Result: PASS
+
+Test 37: Connectivity Report With Degree Tie
+Input: ./campus testdata/case1, menu option 11
+Expected: Student Union and Business Building tied for highest degree; 3 components.
+Actual: All values matched.
+Result: PASS
+
+Test 38: Connectivity Report With No Buildings
+Input: Menu option 11 after loading missing data files.
+Expected: Display no buildings loaded and totals of 0.
+Actual: Program displayed both expected messages.
+Result: PASS
+
+Test 39: Invalid Building and Connection Records
+Input: ./campus testdata/case1
+Expected: Reject duplicate, reversed, self, unknown, and malformed records.
+Actual: 10 buildings and 8 connections accepted; 2 and 7 rejected with warnings.
+Result: PASS
+
+Test 40: Blank Building Name
+Input: Menu option 5, spaces only
+Expected: Reject the empty name.
+Actual: Error message displayed.
+Result: PASS
+
 Tests 1–17: PASS
 Tests 18–27: PASS
 Test 28: PARTIAL PASS
-Tests 29–30: PASS
+Tests 29–40: PASS
 
 The root department creation test identified a minor issue where the program requests a parent even when the department tree is empty. Root creation itself works correctly.
