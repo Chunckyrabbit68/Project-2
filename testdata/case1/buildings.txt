@@ -5,3 +5,8 @@ Engineering Building
 Business Building
 Gym
 Observatory
+  Hall #2  
+Art Building
+Music Hall
+library
+Parking|Garage
