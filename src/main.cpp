@@ -41,7 +41,7 @@ int main(int argc, char* argv[]) {
     string input;
     int choice = -1;
 
-    while (choice != 10) {
+    while (choice != 0) {
 
         cout << "\n===== SMART CAMPUS NAVIGATION =====\n";
         cout << "1. View all facilities\n";
@@ -53,7 +53,9 @@ int main(int argc, char* argv[]) {
         cout << "7. Search department\n";
         cout << "8. Display department hierarchy\n";
         cout << "9. Run preorder traversal\n";
-        cout << "10. Exit\n";
+        cout << "10. Find shortest path (BFS)\n";
+        cout << "11. Graph connectivity report\n";
+        cout << "0. Exit\n";
         cout << "Enter choice: ";
 
         if (!getline(cin, input)) {
@@ -64,7 +66,7 @@ int main(int argc, char* argv[]) {
         string extra;
 
         if (!(ss >> choice) || (ss >> extra) ||
-            choice < 1 || choice > 10) {
+            choice < 0 || choice > 11) {
             cout << "Invalid menu choice.\n";
             choice = -1;
             continue;
@@ -100,7 +102,7 @@ int main(int argc, char* argv[]) {
                 cout << "Enter starting building: ";
                 getline(cin, building);
 
-                if (building.empty()) {
+                if (building.find_first_not_of(" \t\r") == string::npos) {
                     cout << "Error: Building name cannot be empty.\n";
                     break;
                 }
@@ -152,7 +154,31 @@ int main(int argc, char* argv[]) {
                 tree.preorderTraversal();
                 break;
 
-            case 10:
+            case 10: {
+                string start;
+                string destination;
+
+                cout << "Enter starting building: ";
+                getline(cin, start);
+
+                cout << "Enter destination building: ";
+                getline(cin, destination);
+
+                if (start.find_first_not_of(" \t\r") == string::npos ||
+                    destination.find_first_not_of(" \t\r") == string::npos) {
+                    cout << "Error: Building cannot be empty\n";
+                    break;
+                }
+
+                graph.shortestPath(start, destination);
+                break;
+            }
+
+            case 11:
+                graph.displayConnectivityReport();
+                break;
+
+            case 0:
                 cout << "Exiting program.\n";
                 break;
         }
