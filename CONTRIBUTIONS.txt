@@ -65,9 +65,27 @@ Contributed to the department hierarchy design.
 
 COLIN DWYER
 
-Modules: Did not contribute
+Modules:
 
-Contributions: Did not contribute
+BFS Shortest Path
+
+Graph Connectivity Report
+
+Graph Testing
+
+Contributions:
+
+Implemented the BFS shortest path between two buildings.
+
+Implemented the graph connectivity report.
+
+Added the shortest path and connectivity report options to the main menu.
+
+Added graph test data and recorded tests 29-40.
+
+Fixed blank building names in BFS and changed Exit to option 0.
+
+Updated the README for the graph features.
 
 SHARED WORK
 
