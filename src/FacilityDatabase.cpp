@@ -207,4 +207,88 @@ void FacilityDatabase::displayLoadSummary() const {
 
     std::cout << "Hash collisions: "
               << hashTable.getCollisionCount() << "\n";
+    
 }
+// Searches for facilities by complete name
+void FacilityDatabase::searchFacilityByName(const std::string& input) const {
+    std::string name = toUpper(trim(input));
+    int matches = 0;
+
+    if (name.empty()) {
+        std::cout << "Error: Facility name cannot be blank.\n";
+        return;
+    }
+
+    for (const Facility& facility : facilities) {
+        if (toUpper(facility.getName()) == name) {
+            std::cout << "\nID: " << facility.getID() << "\n";
+            std::cout << "Name: " << facility.getName() << "\n";
+            std::cout << "Building: " << facility.getBuilding() << "\n";
+            std::cout << "Category: " << facility.getCategory() << "\n";
+            matches++;
+        }
+    }
+
+    if (matches == 0) {
+        std::cout << "No facilities found with that name.\n";
+    }
+
+    std::cout << "Matches: " << matches << "\n";
+}
+
+// Searches for facilities by category
+void FacilityDatabase::searchFacilityByCategory(const std::string& input) const {
+    std::string category = toUpper(trim(input));
+    int matches = 0;
+
+    if (category.empty()) {
+        std::cout << "Error: Category cannot be blank.\n";
+        return;
+    }
+
+    for (const Facility& facility : facilities) {
+        if (toUpper(facility.getCategory()) == category) {
+            std::cout << "\nID: " << facility.getID() << "\n";
+            std::cout << "Name: " << facility.getName() << "\n";
+            std::cout << "Building: " << facility.getBuilding() << "\n";
+            std::cout << "Category: " << facility.getCategory() << "\n";
+            matches++;
+        }
+    }
+
+    if (matches == 0) {
+        std::cout << "No facilities found in that category.\n";
+    }
+
+    std::cout << "Matches: " << matches << "\n";
+}
+
+// Displays facility counts and percentages by category
+void FacilityDatabase::displayCategoryReport() const {
+    if (facilities.empty()) {
+        std::cout << "No facilities available.\n";
+        std::cout << "Total facilities: 0\n";
+        return;
+    }
+
+    std::vector<std::string> categories;
+    std::vector<int> counts;
+
+    for (const Facility& facility : facilities) {
+        std::string category = facility.getCategory();
+        bool found = false;
+
+        for (size_t i = 0; i < categories.size(); i++) {
+            if (toUpper(categories[i]) == toUpper(category)) {
+                counts[i]++;
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+        categories.push_back(category);
+        counts.push_back(1);
+    
+        }
+  
