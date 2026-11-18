@@ -28,7 +28,7 @@ std::string FacilityDatabase::trim(const std::string& text) const {
     return text.substr(start, end - start);
 }
 
-// Converts text to uppercase
+// Converts text to an uppercase
 std::string FacilityDatabase::toUpper(const std::string& text) const {
     std::string result = text;
 
@@ -41,7 +41,7 @@ std::string FacilityDatabase::toUpper(const std::string& text) const {
     return result;
 }
 
-// Validates facility ID format
+// Validates the facility ID format
 bool FacilityDatabase::isValidID(const std::string& id) const {
     if (id.length() != 4 || id[0] != 'F') {
         return false;
@@ -68,7 +68,6 @@ void FacilityDatabase::loadFacilities(
         displayLoadSummary();
         return;
     }
-
     std::string line;
     int lineNumber = 0;
 
@@ -83,7 +82,6 @@ void FacilityDatabase::loadFacilities(
 
         std::vector<std::string> fields;
         size_t start = 0;
-
         while (true) {
             size_t pos = line.find('|', start);
 
@@ -99,7 +97,7 @@ void FacilityDatabase::loadFacilities(
         std::string reason;
 
         if (fields.size() != 4) {
-            reason = "Incorrect number of fields";
+        reason = "Incorrect number of fields";
         } else {
             std::string id = toUpper(fields[0]);
             std::string name = fields[1];
@@ -110,15 +108,15 @@ void FacilityDatabase::loadFacilities(
                 building.empty() || category.empty()) {
                 reason = "Empty required field";
             } else if (!isValidID(id)) {
-                reason = "Invalid facility ID (expected F plus three digits)";
+              reason = "Invalid facility ID (expected F plus three digits)";
             } else {
                 bool buildingFound = false;
 
                 for (const std::string& validBuilding : buildings) {
                     if (toUpper(trim(validBuilding)) == toUpper(building)) {
-                        building = validBuilding;
-                        buildingFound = true;
-                        break;
+                     building = validBuilding;
+                    buildingFound = true;
+                     break;
                     }
                 }
 
@@ -132,10 +130,10 @@ void FacilityDatabase::loadFacilities(
                     } else {
                         facilities.push_back(facility);
                         acceptedCount++;
-                    }
+                  }
                 }
             }
-        }
+         }
 
         if (!reason.empty()) {
             rejectedCount++;
@@ -209,7 +207,7 @@ void FacilityDatabase::displayLoadSummary() const {
               << hashTable.getCollisionCount() << "\n";
     
 }
-// Searches for facilities by complete name
+// Searches for facilities by the complete name
 void FacilityDatabase::searchFacilityByName(const std::string& input) const {
     std::string name = toUpper(trim(input));
     int matches = 0;
@@ -255,8 +253,7 @@ void FacilityDatabase::searchFacilityByCategory(const std::string& input) const 
             matches++;
         }
     }
-
-    if (matches == 0) {
+        if (matches == 0) {
         std::cout << "No facilities found in that category.\n";
     }
 
