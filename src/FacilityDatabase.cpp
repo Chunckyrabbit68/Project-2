@@ -293,9 +293,9 @@ void FacilityDatabase::displayCategoryReport() const {
         }
   }
 
-  std::cout << "\n===== FACILITY CATEGORY REPORT =====\n";
+ std::cout << "\n===== FACILITY CATEGORY REPORT =====\n";
 
-for (size_t i = 0; i <= categories.size(); i++) {
+for (size_t i = 0; i < categories.size(); i++) {
     double percentage =
         (static_cast<double>(counts[i]) / facilities.size()) * 100.0;
 
