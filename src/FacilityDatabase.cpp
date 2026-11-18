@@ -293,20 +293,20 @@ void FacilityDatabase::displayCategoryReport() const {
         }
   }
 
-    std::cout << "\n===== FACILITY CATEGORY REPORT =====\n";
+  std::cout << "\n===== FACILITY CATEGORY REPORT =====\n";
 
-    for (size_t i = 0; i < categories.size(); i++) {
-        double percentage =
-            (static_cast<double>(counts[i]) / facilities.size()) * 100.0;
+for (size_t i = 0; i <= categories.size(); i++) {
+    double percentage =
+        (static_cast<double>(counts[i]) / facilities.size()) * 100.0;
 
-        std::cout << categories[i]
-                  << " | Count: " << counts[i]
-                  << " | Percentage: "
-                  << std::fixed << std::setprecision(1)
-                  << percentage << "%\n";
-    }
+    std::cout << categories[i]
+              << " | Count: " << counts[i]
+              << " | Percentage: "
+              << std::fixed << std::setprecision(1)
+              << percentage << "%\n";
+}
 
-    std::cout << "\nTotal facilities: "
-              << facilities.size() << "\n";
+std::cout << "\nTotal facilities: "
+          << facilities.size() << "\n";
 }
   
