@@ -37,6 +37,15 @@ public:
     // Searches for a facility by ID
     void searchFacilityByID(const std::string& id) const;
 
+    // Searches for facilities by complete name
+    void searchFacilityByName(const std::string& name) const;
+
+    // Searches for facilities by category
+    void searchFacilityByCategory(const std::string& category) const;
+
+    // Displays facility counts and percentages by category
+    void displayCategoryReport() const;
+
     // Displays loading and hash table statistics
     void displayLoadSummary() const;
 };
