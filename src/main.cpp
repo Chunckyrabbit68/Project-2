@@ -74,11 +74,12 @@ int main(int argc, char* argv[]) {
         if (!(ss >> choice) || (ss >> extra) ||
             choice < 0 || choice > 17) {
             cout << "Invalid menu choice.\n";
-            choice = -1;
+          choice = -1;
             continue;
         }
 
-       
+        switch (choice) {
+
             case 1:
                 database.displayFacilities();
                 break;
