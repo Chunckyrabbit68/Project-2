@@ -14,6 +14,8 @@ private:
     void preorderHelper(DepartmentNode* current) const;
     void deleteTree(DepartmentNode* current);
 
+    void postorderHelper(DepartmentNode* current) const;
+
 public:
     DepartmentTree();
     ~DepartmentTree();
@@ -32,6 +34,8 @@ public:
 
     //Loads department records from a text file
     void loadFromFile(const string& filename);
+
+    void postorderTraversal() const;
 };
 
 #endif
