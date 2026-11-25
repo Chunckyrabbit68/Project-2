@@ -13,9 +13,7 @@ private:
     void displayHierarchyHelper(DepartmentNode* current, int depth) const;
     void preorderHelper(DepartmentNode* current) const;
     void deleteTree(DepartmentNode* current);
-
     void postorderHelper(DepartmentNode* current) const;
-
     void statisticsHelper(DepartmentNode* current, int depth, int& total, int& leaves, int& height) const;
 
 public:
