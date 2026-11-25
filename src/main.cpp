@@ -43,20 +43,26 @@ int main(int argc, char* argv[]) {
 
     while (choice != 0) {
 
-        cout << "\n===== SMART CAMPUS NAVIGATION =====\n";
-        cout << "1. View all facilities\n";
-        cout << "2. Search facility by ID\n";
-        cout << "3. View campus graph\n";
-        cout << "4. Display graph counts and degrees\n";
-        cout << "5. Find reachable buildings (BFS)\n";
-        cout << "6. Add department\n";
-        cout << "7. Search department\n";
-        cout << "8. Display department hierarchy\n";
-        cout << "9. Run preorder traversal\n";
-        cout << "10. Find shortest path (BFS)\n";
-        cout << "11. Graph connectivity report\n";
-        cout << "0. Exit\n";
-        cout << "Enter choice: ";
+    cout << "\n===== SMART CAMPUS NAVIGATION =====\n";
+    cout << "1. View all facilities\n";
+    cout << "2. Search facility by ID\n";
+    cout << "3. Search facility by name\n";
+    cout << "4. Search facility by category\n";
+    cout << "5. View campus graph\n";
+    cout << "6. Display graph counts and degrees\n";
+    cout << "7. Find reachable buildings (BFS)\n";
+    cout << "8. Find shortest path (BFS)\n";
+    cout << "9. Add department\n";
+    cout << "10. Search department\n";
+    cout << "11. Display department hierarchy\n";
+    cout << "12. Preorder traversal\n";
+    cout << "13. Postorder traversal\n";
+    cout << "14. Level-order traversal\n";
+    cout << "15. Department statistics\n";
+    cout << "16. Facility category report\n";
+    cout << "17. Graph connectivity report\n";
+    cout << "0. Exit\n";
+    cout << "Enter choice: ";
 
         if (!getline(cin, input)) {
             break;
