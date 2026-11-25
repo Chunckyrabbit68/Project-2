@@ -72,7 +72,7 @@ int main(int argc, char* argv[]) {
         string extra;
 
         if (!(ss >> choice) || (ss >> extra) ||
-            choice < 0 || choice > 11) {
+            choice < 0 || choice > 17) {
             cout << "Invalid menu choice.\n";
             choice = -1;
             continue;
@@ -183,6 +183,35 @@ int main(int argc, char* argv[]) {
             case 11:
                 graph.displayConnectivityReport();
                 break;
+
+            
+            case 12:
+                tree.preorderTraversal();
+                break;
+
+            case 13:
+                // Connect postorder traversal
+                cout << "Not implemented yet.\n";
+                break;
+
+            case 14:
+                // Connect level-order traversal
+                cout << "Not implemented yet.\n";
+                break;
+
+            case 15:
+                // Connect department statistics
+                cout << "Not implemented yet.\n";
+                break;
+
+            case 16:
+                database.displayCategoryReport();
+                break;
+
+            case 17:
+                graph.displayConnectivityReport();
+                break;
+
 
             case 0:
                 cout << "Exiting program.\n";
