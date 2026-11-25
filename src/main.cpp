@@ -78,8 +78,7 @@ int main(int argc, char* argv[]) {
             continue;
         }
 
-        switch (choice) {
-
+       
             case 1:
                 database.displayFacilities();
                 break;
@@ -94,15 +93,35 @@ int main(int argc, char* argv[]) {
                 break;
             }
 
-            case 3:
+            case 3: {
+                string name;
+
+                cout << "Enter facility name: ";
+                getline(cin, name);
+
+                database.searchFacilityByName(name);
+                break;
+            }
+
+            case 4: {
+                string category;
+
+                cout << "Enter facility category: ";
+                getline(cin, category);
+
+                database.searchFacilityByCategory(category);
+                break;
+            }
+
+            case 5:
                 graph.displayGraph();
                 break;
 
-            case 4:
+            case 6:
                 graph.displayStatistics();
                 break;
 
-            case 5: {
+            case 7: {
                 string building;
 
                 cout << "Enter starting building: ";
@@ -117,50 +136,7 @@ int main(int argc, char* argv[]) {
                 break;
             }
 
-            case 6: {
-                string name;
-                string parent;
-
-                cout << "Enter new department name: ";
-                getline(cin, name);
-
-                if (name.find_first_not_of(" \t\r") == string::npos) {
-                    cout << "Error: Department name cannot be empty.\n";
-                    break;
-                }
-
-                cout << "Enter parent department";
-                cout << " (leave blank if creating the root): ";
-                getline(cin, parent);
-
-                tree.addDepartment(name, parent);
-                break;
-            }
-
-            case 7: {
-                string name;
-
-                cout << "Enter department name: ";
-                getline(cin, name);
-
-                if (name.find_first_not_of(" \t\r") == string::npos) {
-                    cout << "Error: Department name cannot be empty.\n";
-                    break;
-                }
-
-                tree.searchDepartment(name);
-                break;
-            }
-
-            case 8:
-                tree.displayHierarchy();
-                break;
-
-            case 9:
-                tree.preorderTraversal();
-                break;
-
-            case 10: {
+            case 8: {
                 string start;
                 string destination;
 
@@ -180,11 +156,45 @@ int main(int argc, char* argv[]) {
                 break;
             }
 
+            case 9: {
+                string name;
+                string parent;
+
+                cout << "Enter new department name: ";
+                getline(cin, name);
+
+                if (name.find_first_not_of(" \t\r") == string::npos) {
+                    cout << "Error: Department name cannot be empty.\n";
+                    break;
+                }
+
+                cout << "Enter parent department";
+                cout << " (leave blank if creating the root): ";
+                getline(cin, parent);
+
+                tree.addDepartment(name, parent);
+                break;
+            }
+
+            case 10: {
+                string name;
+
+                cout << "Enter department name: ";
+                getline(cin, name);
+
+                if (name.find_first_not_of(" \t\r") == string::npos) {
+                    cout << "Error: Department name cannot be empty.\n";
+                    break;
+                }
+
+                tree.searchDepartment(name);
+                break;
+            }
+
             case 11:
-                graph.displayConnectivityReport();
+                tree.displayHierarchy();
                 break;
 
-            
             case 12:
                 tree.preorderTraversal();
                 break;
@@ -211,7 +221,6 @@ int main(int argc, char* argv[]) {
             case 17:
                 graph.displayConnectivityReport();
                 break;
-
 
             case 0:
                 cout << "Exiting program.\n";
