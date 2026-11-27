@@ -200,19 +200,16 @@ int main(int argc, char* argv[]) {
                 tree.preorderTraversal();
                 break;
 
-            case 13:
-                // Connect postorder traversal
-                cout << "Not implemented yet.\n";
+           case 13:
+                tree.postorderTraversal();
                 break;
 
             case 14:
-                // Connect level-order traversal
-                cout << "Not implemented yet.\n";
+                tree.levelOrderTraversal();
                 break;
 
             case 15:
-                // Connect department statistics
-                cout << "Not implemented yet.\n";
+                tree.displayStatistics();
                 break;
 
             case 16:
