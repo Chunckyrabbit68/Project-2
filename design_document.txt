@@ -4,11 +4,13 @@ The Smart Campus Navigation and Facility Analytics System is a C++ program desig
 
 The program uses three main data structures: a custom hash table, an undirected graph, and a general tree. Each structure is implemented in separate classes to keep the program organized and easier to maintain.
 
+The final program supports facility searches, campus navigation, department management, tree traversals, and analytical reports.
+
 2. CUSTOM HASH TABLE
 
 The HashTable class stores campus facilities using their facility IDs as keys. Each facility contains an ID, name, building, and category.
 
-The hash table has an initial capacity of 11 buckets and uses a custom polynomial hash function.
+The hash table has a capacity of 11 buckets and uses a custom polynomial hash function.
 
 The hash function processes each character of the facility ID using the following formula:
 
@@ -26,7 +28,7 @@ The hash table uses separate chaining to handle collisions.
 
 Each bucket contains a vector that can store multiple facilities. If two facility IDs produce the same hash index, both facilities can be stored in that bucket.
 
-Separate chaining was chosen because it is straightforward to implement and does not impose a fixed maximum number of facilities.
+Separate chaining was chosen because it is straightforward to implement and does not require each bucket to store only one facility.
 
 A collision is counted when a new, accepted facility is inserted into a bucket that already contains another facility.
 
@@ -34,13 +36,13 @@ Duplicate facility IDs are rejected and do not increase the collision count.
 
 The program tracks the hash table's capacity, total entries, and collision count.
 
-The initial capacity is 11. The table does not resize, but each bucket can grow as additional facilities are inserted.
+The capacity is 11. The table does not resize, but each bucket can grow as additional facilities are inserted.
 
 4. FACILITY DATABASE
 
 The Facility class stores the ID, name, building, and category of each campus facility.
 
-The FacilityDatabase class handles reading facility records, validating IDs, rejecting duplicates, displaying facilities, and searching by ID.
+The FacilityDatabase class handles reading facility records, validating IDs, rejecting duplicates, displaying facilities, and searching by ID, name, and category.
 
 Facilities are stored in a vector to preserve their original file order.
 
@@ -49,6 +51,10 @@ Facility IDs must begin with F followed by exactly three digits.
 The program rejects invalid records and facilities referencing buildings that do not exist in the campus graph.
 
 Facility ID searches use the custom hash table instead of scanning all facility records.
+
+Facility name and category searches use linear search to examine each facility in the vector. Both searches are case insensitive and allow multiple matching facilities to be displayed.
+
+The program displays the total number of matches and handles blank input and unsuccessful searches.
 
 5. CAMPUS GRAPH
 
@@ -70,7 +76,7 @@ The graph also calculates the number of buildings, total connections, and degree
 
 Breadth-First Search (BFS) is used to determine which buildings are reachable from a selected starting building.
 
-The algorithm uses a queue and a visited structure.
+The algorithm uses a queue, a visited vector, and a distance vector.
 
 The starting building is marked as visited and assigned a distance of 0.
 
@@ -80,7 +86,21 @@ BFS processes buildings in the order they are discovered and calculates the numb
 
 The program also handles isolated buildings and unknown starting locations.
 
-7. DEPARTMENT GENERAL TREE
+7. SHORTEST PATH
+
+The shortest path function uses BFS to find the route with the fewest connections between two buildings.
+
+Since the campus graph is unweighted, each connection has the same cost.
+
+A previous vector stores the building used to reach each newly discovered building.
+
+After BFS is completed, the program reconstructs the shortest path by following the previous building indices from the destination back to the starting building.
+
+The path is then displayed starting with the original building and ending with the destination.
+
+The program displays the total number of connections and handles unknown buildings and situations where no path exists.
+
+8. DEPARTMENT GENERAL TREE
 
 The DepartmentTree class represents the university's academic department hierarchy.
 
@@ -90,36 +110,164 @@ A general tree was chosen because departments can have any number of child depar
 
 The first accepted department becomes the root. Additional departments are attached to existing parent departments.
 
-The program supports adding departments, searching by name, displaying the hierarchy, and preorder traversal.
+The program supports adding departments, searching by name, displaying the hierarchy, preorder traversal, postorder traversal, level-order traversal, and department statistics.
 
 Preorder traversal visits the current department before recursively visiting its children in insertion order.
 
+Postorder traversal recursively visits each child before visiting the current department.
+
+Level-order traversal uses a queue to visit departments one level at a time, starting with the root.
+
+The program rejects duplicate department names and departments with unknown parents.
+
 The department tree also uses a destructor to release dynamically allocated nodes.
 
-8. PROGRAM ORGANIZATION
+9. ANALYTICAL REPORTS
+
+FACILITY CATEGORY REPORT
+
+The facility category report displays the number and percentage of facilities belonging to each category.
+
+Two vectors are used to store category names and their corresponding counts.
+
+The program examines each facility and increases the count of its category. If the category does not already exist in the vector, it is added.
+
+The percentage of each category is calculated using:
+
+Percentage = (Category count / Total facilities) * 100
+
+The report also displays the total number of facilities.
+
+GRAPH CONNECTIVITY REPORT
+
+The graph connectivity report displays the total number of buildings, total connections, buildings with the highest degree, isolated buildings, and number of connected components.
+
+The highest degree is determined by examining the size of each building's adjacency list.
+
+Isolated buildings are identified by checking for empty adjacency lists.
+
+Connected components are calculated using BFS. Each BFS starting from an unvisited building identifies a new connected component.
+
+DEPARTMENT STATISTICS
+
+The department statistics report displays the total number of departments, number of leaf departments, and tree height.
+
+A recursive function visits each department and increases the total department count.
+
+Departments with no children are counted as leaf departments.
+
+Tree height is calculated by keeping track of the maximum depth reached during traversal.
+
+The root department has a depth of 0. An empty tree displays zero departments, zero leaves, and a height of N/A.
+
+10. TIME COMPLEXITY
+
+N represents the number of facilities.
+
+V represents the number of buildings.
+
+E represents the number of connections.
+
+D represents the number of departments.
+
+C represents the number of unique facility categories.
+
+FACILITY DATABASE AND HASH TABLE
+
+Displaying all facilities: O(N)
+
+Hash table insertion: O(N) worst case
+
+Hash table ID search: O(N) worst case
+
+Searching by facility name: O(N)
+
+Searching by facility category: O(N)
+
+Facility category report: O(N * C), or O(N²) worst case
+
+The hash table provides efficient searching when facility IDs are evenly distributed across buckets. Since the table has a fixed capacity of 11, search performance depends on the number of facilities stored in each bucket.
+
+CAMPUS GRAPH
+
+Searching for a building: O(V)
+
+Displaying the graph: O(V + E)
+
+Displaying graph counts and degrees: O(V)
+
+BFS reachability: O(V + E)
+
+BFS shortest path: O(V + E)
+
+Graph connectivity report: O(V + E)
+
+BFS visits each reachable building once and examines its connections.
+
+DEPARTMENT GENERAL TREE
+
+Adding a department: O(D)
+
+Searching for a department: O(D)
+
+Displaying the hierarchy: O(D), excluding indentation output
+
+Preorder traversal: O(D)
+
+Postorder traversal: O(D)
+
+Level-order traversal: O(D)
+
+Department statistics: O(D)
+
+Tree searches may require visiting every department. Each complete traversal visits every department once.
+
+11. SPACE COMPLEXITY
+
+The facility database and hash table require O(N) space to store facility records.
+
+The campus graph requires O(V + E) space to store buildings and their connections.
+
+BFS and shortest path require O(V) additional space for queues and tracking vectors.
+
+The facility category report requires O(C) additional space to store category names and counts.
+
+The department tree requires O(D) space to store department nodes and their relationships.
+
+Recursive tree traversals require O(H + 1) additional space, where H represents the height of the tree.
+
+Level-order traversal requires O(D) additional space in the worst case because multiple departments may be stored in the queue at the same time.
+
+12. PROGRAM ORGANIZATION
 
 The project uses separate header and implementation files for its main classes.
 
 Facility stores individual facility information.
 
-FacilityDatabase manages facility records and validation.
+FacilityDatabase manages facility records, validation, searches, and category reports.
 
 HashTable handles facility ID lookup and collision management.
 
-CampusGraph handles buildings, connections, statistics, and BFS.
+CampusGraph handles buildings, connections, statistics, BFS, shortest paths, and connectivity reports.
 
 DepartmentNode represents individual departments.
 
-DepartmentTree manages the department hierarchy and traversal operations.
+DepartmentTree manages the department hierarchy, traversal operations, and department statistics.
 
-The main.cpp file initializes the data structures, coordinates file loading, and provides the user menu.
+The main.cpp file initializes the data structures, coordinates file loading, validates menu input, and provides access to all 17 menu options.
 
 This modular design allows each part of the project to be developed, tested, and maintained separately.
 
-9. CONCLUSION
+13. CONCLUSION
 
-The Milestone 1 system combines a custom hash table, campus graph, BFS, and general tree to organize campus information.
+The final system combines a custom hash table, campus graph, BFS, and general tree to organize and analyze campus information.
 
-The hash table provides facility ID lookup, the graph represents building connections, BFS determines reachability, and the general tree organizes academic departments.
+The hash table provides facility ID lookup, while linear search allows facilities to be found by name and category.
+
+The graph represents building connections and uses BFS to determine reachability, shortest paths, and connected components.
+
+The general tree organizes academic departments and supports preorder, postorder, and level-order traversal.
+
+The analytical reports provide information about facility categories, campus connectivity, and department statistics.
 
 The program uses dynamically sized containers and reads campus information from external text files instead of relying on hard-coded records.
