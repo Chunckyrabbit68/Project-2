@@ -232,13 +232,15 @@ Result: PASS
 Test 36: Connectivity Report
 Input: Menu option 17
 Expected: 7 buildings, 6 connections, Student Union highest degree, Observatory isolated, 2 components.
-Actual: All values matched the sample data.
+Actual: Total buildings: 7; total connections: 6; highest degree (3): Student Union; isolated
+buildings: Observatory; connected components: 2.
 Result: PASS
 
 Test 37: Connectivity Report With Degree Tie
 Input: ./campus testdata/case1, menu option 17
 Expected: Student Union and Business Building tied for highest degree; 3 components.
-Actual: All values matched.
+Actual: Total buildings: 10; total connections: 8; highest degree (3): Student Union, Business
+Building; isolated buildings: Observatory; connected components: 3.
 Result: PASS
 
 Test 38: Connectivity Report With No Buildings
@@ -363,14 +365,48 @@ Expected: Display no facilities available and total 0, without dividing by zero.
 Actual: Both expected messages displayed.
 Result: PASS
 
+Test 58: Shortest path two unknown buildings. 
+Input: Menu option 8, Fake Hall, Fake Lab
+Expected: Identify the unknown buildings. 
+Actual: Program displayed "Error: Unknown building: Fake Hall" and "Error: Unknown building: Fake
+Lab".
+Result: PASS
+
+Test 59: Shortest path ignoring case and spaces
+Input: Menu option 8, " library ", "GYM"
+Expected: Library, Student Union, Gym; 2 connections.
+Actual: Library, Student Union, Gym and 2 connections.
+Result: PASS
+
+Test 60: Shortest path between separate groups
+Input: ./campus testdata/case1, menu option 8, Hall #2, Art Building
+Expected: no path exists
+Actual: "No path exists between Hall #2 and Art Building".
+Result: PASS
+
+Test 61: Shortest path tie - connection order swapped
+Input: ./campus testdata/case2, menu option 8, Library, Gym
+Expected: Library, Business Building, Gym; 2 connections. Business listed before Student
+Union in case2, tie go through it.
+Actual: Displayed Library, Business Building, Gym and 2 connections.
+Result: PASS
+
+Test 62: Connectivity report - No isolated buildings
+Input: ./campus testdata/case2, menu option 17
+Expected: 4 buildings, 4 connections, all tied for highest degree, isolated buildings
+None, 1 component
+Actual: Total buildings: 4; total connections: 4; highest degree (2): Library, Student Union,
+Business Building, Gym; isolated buildings: None; connected components: 1.
+Result: PASS
+
 TEST SUMMARY
 
 Tests 1–27: PASS
 Test 28: PARTIAL PASS
-Tests 29–57: PASS
+Tests 29–62: PASS
 
-Total tests: 57
-Passed: 56
+Total tests: 62
+Passed: 61
 Partial passes: 1
 Failed: 0
 
