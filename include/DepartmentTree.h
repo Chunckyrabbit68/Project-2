@@ -13,6 +13,8 @@ private:
     void displayHierarchyHelper(DepartmentNode* current, int depth) const;
     void preorderHelper(DepartmentNode* current) const;
     void deleteTree(DepartmentNode* current);
+    void postorderHelper(DepartmentNode* current) const;
+    void statisticsHelper(DepartmentNode* current, int depth, int& total, int& leaves, int& height) const;
 
 public:
     DepartmentTree();
@@ -32,6 +34,15 @@ public:
 
     //Loads department records from a text file
     void loadFromFile(const string& filename);
+
+    //displays the departments using postorder trasversal
+    void postorderTraversal() const;
+
+    //displays the departments using level order trasversal
+    void levelOrderTraversal() const;
+
+    // Displays department statistics
+    void displayStatistics() const;
 };
 
 #endif
