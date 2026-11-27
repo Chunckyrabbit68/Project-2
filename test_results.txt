@@ -1,9 +1,15 @@
+
+FINAL PROJECT TEST RESULTS
+
+Environment: Linux, g++ with C++17, -Wall and -Wextra.
+Tests 1–40 retain the original recorded results with menu numbers updated to the final menu. The final build and tests 41–57 were run on a temporary copy of the uploaded project with menu options 13–15 connected. UNT CELL testing has not yet been verified.
+
 BUILD TEST
 
 Test 1: Compilation
 Input: g++ -std=c++17 -Wall -Wextra -Iinclude src/*.cpp -o campus
 Expected: Program compiles successfully.
-Actual: Program compiled successfully without errors.
+Actual: Program compiled successfully without errors or warnings.
 Result: PASS
 
 FILE LOADING TESTS
@@ -49,13 +55,13 @@ Result: PASS
 CAMPUS GRAPH TESTS
 
 Test 8: Display Campus Graph
-Input: Menu option 3
+Input: Menu option 5
 Expected: Display all 7 buildings and their connections.
 Actual: All buildings and connections displayed correctly. Observatory had no connections.
 Result: PASS
 
 Test 9: Graph Counts and Degrees
-Input: Menu option 4
+Input: Menu option 6
 Expected: 7 buildings, 6 connections, and correct degrees.
 Actual: All counts and degrees matched the sample data.
 Result: PASS
@@ -63,19 +69,19 @@ Result: PASS
 BFS TESTS
 
 Test 10: BFS From Library
-Input: Menu option 5, Library
+Input: Menu option 7, Library
 Expected: Reach 6 of 7 buildings in BFS order with correct distances.
 Actual: Reached 6 of 7 buildings in the expected order and distances.
 Result: PASS
 
 Test 11: BFS From Isolated Building
-Input: Menu option 5, Observatory
+Input: Menu option 7, Observatory
 Expected: Observatory at distance 0; reachable count 1 of 7.
 Actual: Observatory displayed at distance 0; reachable count 1 of 7.
 Result: PASS
 
 Test 12: BFS With Unknown Building
-Input: Menu option 5, Fake Building
+Input: Menu option 7, Fake Building
 Expected: Display an unknown building error.
 Actual: Program displayed "Error: Unknown building: Fake Building".
 Result: PASS
@@ -83,25 +89,25 @@ Result: PASS
 DEPARTMENT TREE TESTS
 
 Test 13: Add Department
-Input: Menu option 6, Cybersecurity, College of Engineering
+Input: Menu option 9, Cybersecurity, College of Engineering
 Expected: Add Cybersecurity under College of Engineering.
 Actual: Department added successfully.
 Result: PASS
 
 Test 14: Search Department
-Input: Menu option 7, Cybersecurity
+Input: Menu option 10, Cybersecurity
 Expected: Parent College of Engineering, 0 children, depth 2.
 Actual: All department information matched.
 Result: PASS
 
 Test 15: Department Hierarchy
-Input: Menu option 8
+Input: Menu option 11
 Expected: Display departments with four spaces per depth.
 Actual: Department hierarchy displayed with correct relationships and indentation.
 Result: PASS
 
 Test 16: Preorder Traversal
-Input: Menu option 9
+Input: Menu option 12
 Expected: Display departments in preorder without indentation.
 Actual: All 8 departments displayed in the expected preorder sequence.
 Result: PASS
@@ -126,19 +132,19 @@ Actual: Invalid menu choice displayed. Program continued normally.
 Result: PASS
 
 Test 20: Blank Department Name
-Input: Menu option 6, blank department name
+Input: Menu option 9, blank department name
 Expected: Reject the empty name.
 Actual: Error message displayed. Department was not added.
 Result: PASS
 
 Test 21: Duplicate Department
-Input: Menu option 6, Computer Science, College of Engineering
+Input: Menu option 9, Computer Science, College of Engineering
 Expected: Reject the duplicate department.
 Actual: Program displayed an error stating the department already exists.
 Result: PASS
 
 Test 22: Unknown Parent Department
-Input: Menu option 6, Cybersecurity, Fake College
+Input: Menu option 9, Cybersecurity, Fake College
 Expected: Reject the department because the parent does not exist.
 Actual: Program displayed an unknown parent department error.
 Result: PASS
@@ -150,7 +156,7 @@ Actual: Invalid menu choice displayed. Program returned to the menu.
 Result: PASS
 
 Test 24: Search for Nonexistent Department
-Input: Menu option 7, Fake Department
+Input: Menu option 10, Fake Department
 Expected: Report that the department was not found.
 Actual: Program displayed "Department not found: Fake Department".
 Result: PASS
@@ -168,13 +174,13 @@ Actual: Program displayed both expected messages.
 Result: PASS
 
 Test 27: Empty Department Tree
-Input: Menu option 8 after loading missing data files.
+Input: Menu option 11 after loading missing data files.
 Expected: Display a message stating no departments are loaded.
 Actual: Program displayed "No departments are loaded."
 Result: PASS
 
 Test 28: Create Root Department
-Input: Menu option 6, University, with an empty department tree.
+Input: Menu option 9, University, blank parent, with an empty department tree.
 Expected: Create University as the root without requesting a parent.
 Actual: Program requested a parent but allowed the field to remain blank. University was successfully created as the root.
 Result: PARTIAL PASS
@@ -182,61 +188,61 @@ Result: PARTIAL PASS
 SHORTEST PATH AND CONNECTIVITY TESTS
 
 Test 29: Shortest Path From Library
-Input: Menu option 10, Library, Engineering Building
+Input: Menu option 8, Library, Engineering Building
 Expected: Library, Student Union, Science Building, Engineering Building; 3 connections.
 Actual: Displayed the expected path and 3 connections.
 Result: PASS
 
 Test 30: Shortest Path to Same Building
-Input: Menu option 10, Library, library
+Input: Menu option 8, Library, library
 Expected: Library and 0 connections.
 Actual: Displayed Library and 0 connections.
 Result: PASS
 
 Test 31: Shortest Path With Unknown Start
-Input: Menu option 10, Fake Building, Gym
+Input: Menu option 8, Fake Building, Gym
 Expected: Display an unknown building error.
 Actual: Program displayed "Error: Unknown building: Fake Building".
 Result: PASS
 
 Test 32: Shortest Path With Unknown Destination
-Input: Menu option 10, Gym, Fake Building
+Input: Menu option 8, Gym, Fake Building
 Expected: Display an unknown building error.
 Actual: Program displayed "Error: Unknown building: Fake Building".
 Result: PASS
 
 Test 33: Shortest Path With No Route
-Input: Menu option 10, Library, Observatory
+Input: Menu option 8, Library, Observatory
 Expected: Report that no path exists.
 Actual: Program displayed "No path exists between Library and Observatory".
 Result: PASS
 
 Test 34: Shortest Path Tie
-Input: Menu option 10, Library, Gym
+Input: Menu option 8, Library, Gym
 Expected: Library, Student Union, Gym; 2 connections.
 Actual: Displayed the expected path and 2 connections.
 Result: PASS
 
 Test 35: Shortest Path Tie With Own Test Data
-Input: ./campus testdata/case1, menu option 10, Hall #2, Student Union
+Input: ./campus testdata/case1, menu option 8, Hall #2, Student Union
 Expected: Hall #2, Business Building, Library, Student Union; 3 connections.
 Actual: Displayed the expected path and 3 connections.
 Result: PASS
 
 Test 36: Connectivity Report
-Input: Menu option 11
+Input: Menu option 17
 Expected: 7 buildings, 6 connections, Student Union highest degree, Observatory isolated, 2 components.
 Actual: All values matched the sample data.
 Result: PASS
 
 Test 37: Connectivity Report With Degree Tie
-Input: ./campus testdata/case1, menu option 11
+Input: ./campus testdata/case1, menu option 17
 Expected: Student Union and Business Building tied for highest degree; 3 components.
 Actual: All values matched.
 Result: PASS
 
 Test 38: Connectivity Report With No Buildings
-Input: Menu option 11 after loading missing data files.
+Input: Menu option 17 after loading missing data files.
 Expected: Display no buildings loaded and totals of 0.
 Actual: Program displayed both expected messages.
 Result: PASS
@@ -248,14 +254,126 @@ Actual: 10 buildings and 8 connections accepted; 2 and 7 rejected with warnings.
 Result: PASS
 
 Test 40: Blank Building Name
-Input: Menu option 5, spaces only
+Input: Menu option 7, spaces only
 Expected: Reject the empty name.
 Actual: Error message displayed.
 Result: PASS
 
-Tests 1–17: PASS
-Tests 18–27: PASS
-Test 28: PARTIAL PASS
-Tests 29–40: PASS
+FINAL FEATURE TESTS
 
-The root department creation test identified a minor issue where the program requests a parent even when the department tree is empty. Root creation itself works correctly.
+Test 41: Facility Name Search With Multiple Matches
+Input: Menu option 3, Room 101
+Expected: Find F005 and F007; 2 matches.
+Actual: F005 and F007 displayed with their correct buildings; 2 matches.
+Result: PASS
+
+Test 42: Case Insensitive Facility Name Search
+Input: Menu option 3, " computer lab a "
+Expected: Find F004; 1 match.
+Actual: F004 displayed; 1 match.
+Result: PASS
+
+Test 43: Facility Name Not Found
+Input: Menu option 3, Fake Facility
+Expected: Display no matches.
+Actual: No facilities found with that name; 0 matches.
+Result: PASS
+
+Test 44: Blank Facility Name
+Input: Menu option 3, blank input
+Expected: Reject blank name.
+Actual: Displayed the blank facility name error.
+Result: PASS
+
+Test 45: Facility Category Search
+Input: Menu option 4, Classroom
+Expected: Find F005, F007, and F009; 3 matches.
+Actual: All three classroom facilities displayed; 3 matches.
+Result: PASS
+
+Test 46: Case Insensitive Category Search
+Input: Menu option 4, " computer lab "
+Expected: Find F004 and F006; 2 matches.
+Actual: Both computer labs displayed; 2 matches.
+Result: PASS
+
+Test 47: Category Not Found
+Input: Menu option 4, Fake Category
+Expected: Display no matches.
+Actual: No facilities found in that category; 0 matches.
+Result: PASS
+
+Test 48: Blank Category
+Input: Menu option 4, blank input
+Expected: Reject blank category.
+Actual: Displayed the blank category error.
+Result: PASS
+
+Test 49: Postorder Traversal
+Input: Menu option 13
+Expected: Visit children before their parents.
+Actual: Displayed: Computer Science, Electrical Engineering, College of Engineering, Mathematics, Physics, College of Science, University.
+Result: PASS
+
+Test 50: Level-Order Traversal
+Input: Menu option 14
+Expected: Visit each level from the root in insertion order.
+Actual: Displayed: University, College of Engineering, College of Science, Computer Science, Electrical Engineering, Mathematics, Physics.
+Result: PASS
+
+Test 51: Department Statistics
+Input: Menu option 15
+Expected: 7 departments, 4 leaves, height 2.
+Actual: Total departments: 7; leaf departments: 4; tree height: 2.
+Result: PASS
+
+Test 52: Statistics After Adding a Department
+Input: Menu option 9, Cybersecurity, College of Engineering; then option 15
+Expected: 8 departments, 5 leaves, height 2.
+Actual: Department added; statistics displayed 8 departments, 5 leaves, height 2.
+Result: PASS
+
+Test 53: Empty Department Traversals and Statistics
+Input: ./campus testdata/missing; options 13, 14, 15
+Expected: All operations handle an empty tree; statistics show 0 departments, 0 leaves, height N/A.
+Actual: All three options displayed no departments loaded; statistics matched.
+Result: PASS
+
+Test 54: Root-Only Department Tree
+Input: ./campus testdata/missing; option 9, University, blank parent; options 13, 14, 15
+Expected: Both traversals display University; statistics show 1 department, 1 leaf, height 0.
+Actual: Root created, both traversals displayed University, and statistics matched.
+Result: PASS
+
+Test 55: Facility Category Report
+Input: Menu option 16
+Expected: Display six categories with correct counts and percentages; total 10.
+Actual: Library | Count: 2 | Percentage: 20.0%; Tutoring Center | Count: 1 | Percentage: 10.0%; Student Services Office | Count: 1 | Percentage: 10.0%; Computer Lab | Count: 2 | Percentage: 20.0%; Classroom | Count: 3 | Percentage: 30.0%; Recreation | Count: 1 | Percentage: 10.0%; Total facilities: 10.
+Result: PASS
+
+Test 56: Facility Category Report With Additional Facility
+Input: ./campus testdata/case1; menu option 16
+Expected: 11 facilities; Computer Lab and Classroom each have 3 facilities (27.3%).
+Actual: 11 facilities; both categories showed 3 and 27.3%.
+Result: PASS
+
+Test 57: Empty Facility Category Report
+Input: ./campus testdata/missing; menu option 16
+Expected: Display no facilities available and total 0, without dividing by zero.
+Actual: Both expected messages displayed.
+Result: PASS
+
+TEST SUMMARY
+
+Tests 1–27: PASS
+Test 28: PARTIAL PASS
+Tests 29–57: PASS
+
+Total tests: 57
+Passed: 56
+Partial passes: 1
+Failed: 0
+
+The root department creation test identified a minor interface difference from the original expected result: the program requests a parent even when the department tree is empty. The prompt allows the parent to be left blank, and root creation works correctly.
+
+Final compilation and testing on UNT CSE CELL machines remain to be verified.
