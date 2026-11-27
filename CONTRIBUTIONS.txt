@@ -87,6 +87,15 @@ Fixed blank building names in BFS and changed Exit to option 0.
 
 Updated the README for the graph features.
 
+Reflection:
+
+I made the BFS shortest path as well the graph connectivity report in campusgraph. 
+The shortest path use BFS and remember the building each was reached from so path can be rebuilt from 
+destination to start. I reviewed graph tests against section 10 test list and the rubric. I found two test 
+did not state values and fixed also noticed nothing tested a tie going the other way or no isolated building 
+so I added case2 and created more test 58-62. A bug I noticed and fixed was blank building name in BFS was 
+treated as unknown building with empty name so I made check to show an error.
+
 SHARED WORK
 
 GitHub repository organization.
