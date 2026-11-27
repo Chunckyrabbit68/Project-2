@@ -1,0 +1,2 @@
+# FacilityID|FacilityName|BuildingName|Category
+F001|Main Reading Room|Library|Library
