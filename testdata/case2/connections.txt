@@ -1,0 +1,7 @@
+# BuildingA|BuildingB
+# buildings same a sample data but in this Business Building is listed before the 
+# Student Union building so from Library to Gym should go through Business Building.
+Library|Business Building
+Library|Student Union
+Student Union|Gym
+Business Building|Gym

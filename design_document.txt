@@ -98,6 +98,10 @@ After BFS is completed, the program reconstructs the shortest path by following 
 
 The path is then displayed starting with the original building and ending with the destination.
 
+Building marked visited added to the queue and their neighbors are visited in the insertion order when routes are equal length whatever one that is discovered first is selected determining the path. 
+
+If destination and start are same building path only contains building and no connections.
+
 The program displays the total number of connections and handles unknown buildings and situations where no path exists.
 
 8. DEPARTMENT GENERAL TREE

@@ -57,6 +57,7 @@ public:
         const std::string& endBuilding
     ) const;
 
+    // display total, highest degree, isolation and components. 
     void displayConnectivityReport() const;
 
     // Provides accepted building names for facility validation
